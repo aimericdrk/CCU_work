@@ -1,0 +1,7 @@
+[[test]]
+name = "test n°1"
+command = "./problem_one < problem_1/tests/test_sample_one.txt"
+expected.stdout = '2' 
+expected.stderr = ""
+expected.exit_code = 0
+[[test]]
