@@ -11,18 +11,18 @@
 #include <string.h>
 
 // Structure to hold the state for each test case
-typedef struct {
+typedef struct SubarrayState_s {
     int array[50001];
     int prefix_sum[50001];
     int size;
     int divisor;
-} SubarrayState;
+} SubarrayState_t;
 
 // Structure to hold the result for each test case
-typedef struct {
+typedef struct RemainderResult_s {
     int max_remainder;
     int count;
-} RemainderResult;
+} RemainderResult_t;
 
 // problem_one.c
 int main(int argc, char *argv[]);
@@ -34,5 +34,5 @@ int print_help(int return_code);
 void run_test_cases();
 
 // src/calculation_functions.c
-void calculate_prefix_sums(SubarrayState *state);
-RemainderResult find_max_remainder_count(SubarrayState *state);
+void calculate_prefix_sums(SubarrayState_t *state);
+RemainderResult_t find_max_remainder_count(SubarrayState_t *state);

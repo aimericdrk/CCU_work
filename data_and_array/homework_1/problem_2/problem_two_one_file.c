@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     int max_total_attack = 0;
 
     (void)argv;
-    if (argc > 2)
+    if (argc >= 2)
         return print_help(0);
     if (scanf("%d", &test_cases) == EOF)
         return print_help(1);

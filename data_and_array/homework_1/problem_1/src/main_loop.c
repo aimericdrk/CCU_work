@@ -9,7 +9,7 @@
 
 void run_test_cases()
 {
-    SubarrayState state;
+    SubarrayState_t state;
     
     if (scanf("%d", &state.size) == EOF) return;
     for (int i = 0; i < state.size; ++i) {
@@ -21,7 +21,7 @@ void run_test_cases()
     calculate_prefix_sums(&state);
 
     // Find the maximum remainder and its count
-    RemainderResult result = find_max_remainder_count(&state);
+    RemainderResult_t result = find_max_remainder_count(&state);
 
     // Output the count of subarrays with the maximum remainder
     printf("%d\n", result.count);

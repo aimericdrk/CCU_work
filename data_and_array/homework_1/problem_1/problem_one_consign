@@ -1,0 +1,25 @@
+Given an array X that stores a set of positive integers, please write a
+program to find the maximum remainder obtained by dividing the sums of
+subarrays of one-dimensional array X by a given divisor d . For example, we
+have the array X = [2, 1, 3, 4] , and there are totally 10 subarrays, namely [2],
+[2, 1], [2, 1, 3], [2, 1, 3, 4], [1], [1, 3], [1, 3, 4], [3], [3, 4], [4].
+The subarray sums are: 2, 2 + 1 = 3, 2 + 1 + 3 = 6, 2 + 1 + 3 + 4 = 10, 1, 1 + 3
+= 4, 1 + 3 + 4 = 8, 3, 3 + 4 = 7, and 4, respecively.
+When the divisor is 5, the remainders are 2, 3, 1, 0, 1, 4, 3, 3, 2, and 4,
+respectively. The maximum remainder value among these remainders is 4,
+which would be from subarrays [1, 3] and [4].
+
+Input
+The first line of input contains an integer n, indicating the number of test cases.
+For each test case, the first line contains an integer s,1<=s<=50000, which is
+the size of the one-dimensional array X .The second line contains s positive
+integers, indicating the elements of array X, where each integer i satisfies 0<=
+i <= 99999.The last line contains an integer d, 1<=d<=1000, representing the
+divisor.
+
+Output
+For each test case, output an integer on a single line, indicating the number of
+subarrays with the maximum remainder value.
+
+Execution Time Limit
+2 second

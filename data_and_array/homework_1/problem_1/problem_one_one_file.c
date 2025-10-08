@@ -9,18 +9,18 @@
 #include <string.h>
 
 // Structure to hold the state for each test case
-typedef struct {
+typedef struct SubarrayState_s {
     int array[50001];
     int prefix_sum[50001];
     int size;
     int divisor;
-} SubarrayState;
+} SubarrayState_t;
 
 // Structure to hold the result for each test case
-typedef struct {
+typedef struct RemainderResult_s {
     int max_remainder;
     int count;
-} RemainderResult;
+} RemainderResult_t;
 
 int print_help(int return_code)
 {
@@ -35,7 +35,7 @@ int print_help(int return_code)
 }
 
 // Calculate prefix sums for the array
-void calculate_prefix_sums(SubarrayState *state)
+void calculate_prefix_sums(SubarrayState_t *state)
 {
     state->prefix_sum[0] = 0;
     for (int i = 0; i < state->size; ++i) {
@@ -44,7 +44,7 @@ void calculate_prefix_sums(SubarrayState *state)
 }
 
 // Find the maximum remainder and its count for all subarrays
-RemainderResult find_max_remainder_count(SubarrayState *state)
+RemainderResult_t find_max_remainder_count(SubarrayState_t *state)
 {
     int remainder_count[1001] = {0};
     int max_remainder = 0;
@@ -58,7 +58,7 @@ RemainderResult find_max_remainder_count(SubarrayState *state)
             }
         }
     }
-    RemainderResult result;
+    RemainderResult_t result;
     result.max_remainder = max_remainder;
     result.count = remainder_count[max_remainder];
     return result;
@@ -66,7 +66,7 @@ RemainderResult find_max_remainder_count(SubarrayState *state)
 
 void run_test_cases()
 {
-    SubarrayState state;
+    SubarrayState_t state;
     
     if (scanf("%d", &state.size) == EOF) return;
     for (int i = 0; i < state.size; ++i) {
@@ -78,7 +78,7 @@ void run_test_cases()
     calculate_prefix_sums(&state);
 
     // Find the maximum remainder and its count
-    RemainderResult result = find_max_remainder_count(&state);
+    RemainderResult_t result = find_max_remainder_count(&state);
 
     // Output the count of subarrays with the maximum remainder
     printf("%d\n", result.count);
@@ -91,7 +91,7 @@ int main(int argc, char *argv[])
     int test_cases;
     (void)argv;
 
-    if (argc > 2) {
+    if (argc >= 2) {
         return print_help(0);
     }
     if (scanf("%d", &test_cases) == EOF) {
