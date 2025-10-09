@@ -1,0 +1,90 @@
+In Shadowverse, you will use a deck focusing on the Fairy and Beetle combo
+strategy. Given an initial set of cards in hand and the available PP (play points),
+you must simulate a single turn of play to maximize the total attack power of
+all fairies on the field. Play one card at a time until the player gains the maximum
+total attack power. When a card is played, the current PP is reduced by its cost.
+Meanwhile, the initial attack power is set to 1 when a Fairy is played.
+Each card in hand is represented by an object with the following properties:
+
+⚫ Type: "F" (Fairy) or "B" (Beetle).
+⚫ Cost: The PP required to play the card (an integer from 1 to 5).
+⚫ Effect:
+"0": No effect (for the card with Type = F, that is for Fairy only).
+"1": Add one Fairy card (Cost = 1, Effect = "0") to your hand (for the card with
+Type = B, that is for Beetle only).
+"2": For each Fairiy currently on the field, gain 1 attack power (for the card
+with Type B, that is for Beetle only). For example, if there are three fairies on
+the field, the attack power increases by three.
+
+Rules:
+When a Fairy is played and the number of Fairies on the field is below the limit
+which is set to 5 (Fairy limit on the field = 5 for all test cases), it is placed on the
+field with an initial attack power of 1. When a Bettle is playced, a Beetle’s effect
+is triggered immediately upon being played. You have PP for the turn, and you
+may choose to play any sequence of cards, as long as the total PP spent does
+not exceed the current available PP. Finally, determine the maximum possible
+total attack power of all Fairies on the field after the turn, given the available PP,
+initial cards, and card effects.
+
+For example, given number of cards (N for short), and the available PP (P for
+short), the details of computing the maximum attack power are shown here.
+N = 4, P = 5
+
+Cards:
+1. F 1 0 (Fairy, cost=1, no effect)
+2. F 1 0 (Fairy, cost=1, no effect)
+3. B 2 1 (Beetle, cost=2, add one Fairy to hand)
+4. B 3 2 (Beetle, cost=3, buff all Fairies on field +1 attack)
+
+Enumerating possible sequences:
+Plan A: Play 2 Fairies → Buff
+Play Fairy (cost 1) → field [1], PP = 4.
+Play Fairy (cost 1) → field [1, 1], PP = 3.
+Play Beetle buff (cost 3) → both Fairies get +1 → field [2, 2], PP = 0.
+The maximum total attack = 4
+
+Plan B: Play 2 Fairies → Beetle add → Extra Fairy
+Play Fairy (1) → field [1], PP = 4.
+Play Fairy (1) → field [1, 1], PP = 3.
+Play Beetle add (2) → +1 Fairy to hand, PP = 1.
+Play new Fairy (1) → field [1, 1, 1], PP = 0.
+The maximum total attack = 3
+
+Plan C: Beetle add first → Fairies
+Play Beetle add (2) → +1 Fairy to hand, PP = 3, field empty.
+Play Fairy (1) → field [1], PP = 2.
+Play Fairy (1) → field [1, 1], PP = 1.
+Play Fairy (1) → field [1, 1, 1], PP = 0
+The maximum total attack = 3
+
+Plan D: Beetle buff first → Fairies
+Play Beetle buff (3) → field empty, no effect, PP = 2.
+Play Fairy (1) → field [1], PP = 1.
+Play Fairy (1) → field [1, 1], PP = 0.
+The maximum total attack = 2
+
+Plan E: Beetle buff + Beetle add
+Play Beetle buff (3) → no Fairies, PP = 2.
+Play Beetle add (2) → +1 Fairy to hand, PP = 0.
+Cannot play anything else, board empty.
+The maximum total attack = 0
+Among all possibilities, the best is Plan A, yielding a maximum total Fairy attack
+of 4
+
+Input
+The first line contains an integer T (1 ≤ T ≤ 100), denoting the number of test
+cases. Each test case consists of the following detials:
+⚫ The first line contains two integers N (1 ≤ N ≤ 10) and P (1 ≤ P ≤ 10),
+representing the number of cards in hand and the available Play Points
+(PP), respectively.
+⚫ The next N lines each contain three fields:
+ A character type ("F" or "B"), representing the card type.
+ An integer cost (1 ≤ cost ≤ 5), representing the card’s cost.
+ An integer effect (0 ≤ effect ≤ 2), representing the card’s effect.
+
+Output
+For each test case, output a single line containing one integer which is the
+maximum total attack power of all Fairies on the board within the given PP limit.
+
+Execution Time Limit
+1 second
