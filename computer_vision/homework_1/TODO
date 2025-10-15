@@ -1,0 +1,29 @@
+4105109 Computer Vision
+Assignment #1
+Deadline : 11/04 (Wed) 11:59 pm.
+
+1. Given the 2D-to-3D corresponding points, calculate the projection matrix.
+2. Based on the projection matrix, calculate the calibration matrix、rotation matrix
+and translation matrix.
+3. Use projection matrix to calculate the projected 2D points from 3D points.
+Calculate the average projection error.
+Note:
+• You need to handin the python code and the report
+• Your report should include:
+• 1) Method description
+• 2) Experimental results
+• 3) Discussion of results
+• 4) Problems or difficulties you have encountered
+• Upload your assignment to E-Course
+• File Format
+• Zip all your files into a SINGLE file
+• Name your file by
+StudentID_hw1_version
+ex： 602410143_hw1_v1
+• Delay Policy
+• If submitted one day late, the assignment grade will be reduced to 80% of
+the original score; if two days late, it will be reduced to 60%, and so on,
+until it reaches zero.
+• Assignment Plagiarism
+• Plagiarized assignments will receive a score of zero. The determination
+of plagiarism will be made by the instructor and teaching assistants.
