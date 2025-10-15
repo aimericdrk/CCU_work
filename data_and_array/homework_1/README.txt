@@ -28,6 +28,10 @@ To compile the project, use the provided Makefile:
 make
 ```
 
+if you don't have make on your computer you can still execute : 
+
+gcc problem_1/src/calculation_functions.c problem_1/src/main_loop.c problem_1/src/print_help.c problem_1/problem_one.c -I./problem_1/ -o problem_one
+
 This will build the executables for both problems. For problem 1, the binary will be named `problem_one` and located in the root of `homework_1`.
 
 Running the Program
@@ -153,6 +157,10 @@ Compilation Instructions
 To compile the project, use the provided Makefile:
 
 make
+
+if you don't have make on your computer you an still execute :
+
+gcc problem_2/src/game_state_manager.c problem_2/src/game_loop.c problem_2/src/print_help.c problem_2/problem_two.c -I./problem_2/ -o problem_two
 
 This will build the executables for both problems. For problem 2, the binary will be named problem_two and located in the root of homework_1.
 

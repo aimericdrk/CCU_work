@@ -70,7 +70,7 @@ void run_test_cases()
     
     if (scanf("%d", &state.size) == EOF) return;
     for (int i = 0; i < state.size; ++i) {
-        if (scanf("%d", &state.array[i]) == EOF) break;
+        if (scanf("%d", &state.array[i]) == EOF) return;
     }
     if (scanf("%d", &state.divisor) == EOF) return;
 
