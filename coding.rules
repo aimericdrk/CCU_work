@@ -1,0 +1,23 @@
+the function has to be less than 20 lines long, 
+
+they have to have explicit name with explicit arguments
+
+they have to have less than 5 arguments ( use struct if not possible )
+
+you have to decalre prototype in .h file
+
+make every import in .h file
+
+no more than 2 indentation ( no more than two if inside if )
+
+add comment on top of each file to describe what they do
+
+no more than 4 functions by files
+
+every if conditions had to have an open and closing bracket ( same for for, else ...)
+
+when declaring a function you put the open curly bracket on the next line
+
+every functions has to be a camel case
+
+when a struct is declared it has to have a double declaration with _s and _t

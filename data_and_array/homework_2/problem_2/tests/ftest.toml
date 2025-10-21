@@ -1,0 +1,7 @@
+[[test]]
+name = "test n°1"
+command = "./problem_two < problem_2/tests/test_sample_one.txt"
+expected.stdout = 'Move disk 1 from A to C\nMove disk 2 from A to B\nMove disk 1 from C to B\nMove disk 3 from A to C\nMove disk 1 from B to A\nMove disk 2 from B to C\nMove disk 1 from A to C\nMove disk 4 from A to B\nMove disk 1 from C to B\nMove disk 2 from C to A\nrod A : 5 2\nrod B : 4 1\nrod C : 3' 
+expected.stderr = ""
+expected.exit_code = 0
+[[test]]
