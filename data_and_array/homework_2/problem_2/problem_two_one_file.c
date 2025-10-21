@@ -80,7 +80,7 @@ void print_rods(stack_t rods[3])
 void print_moves(move_t *moves, int k)
 {
     for (int i = 0; i < k; i++) {
-        printf("Move disk %d from %c to %c\n", moves[i].disk, rod_name(moves[i].from), moves[i].to);
+        printf("Move disk %d from %c to %c\n", moves[i].disk, rod_name(moves[i].from), rod_name(moves[i].to));
     }
 }
 
