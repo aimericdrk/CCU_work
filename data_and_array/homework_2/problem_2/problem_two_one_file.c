@@ -30,16 +30,6 @@ typedef struct hanoi_context_s {
     move_t moves[131072];
 } hanoi_context_t;
 
-void init_stack(stack_t *s);
-int is_empty(stack_t *s);
-void push_stack(stack_t *s, int val);
-int pop_stack(stack_t *s);
-char rod_name(int idx);
-void print_rods(stack_t rods[3]);
-void print_moves(move_t *moves, int k);
-void hanoi_recursive(hanoi_context_t *ctx, int n, int from, int aux, int to);
-
-
 void init_stack(stack_t *s)
 {
     s->top = -1;
