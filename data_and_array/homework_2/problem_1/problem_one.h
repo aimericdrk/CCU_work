@@ -14,17 +14,20 @@
 
 // Position structure
 typedef struct position_s {
-    int x, y;
+    int x;
+    int y;
 } position_t;
 
 // Queue structure for BFS
 typedef struct queue_s{
     position_t data[MAX_SIZE * MAX_SIZE];
-    int front, rear;
+    int front;
+    int rear;
 } queue_t;
 
 typedef struct bfs_context_s {
-        int rows, cols;
+        int rows;
+        int cols;
         int (*maze)[MAX_SIZE];
         int visited[MAX_SIZE][MAX_SIZE];
         position_t parent[MAX_SIZE][MAX_SIZE];
