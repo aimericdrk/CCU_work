@@ -129,7 +129,7 @@ int bfs_shortest_path(bfs_context_t *ctx)
         return 0;
 
     en_queue(&q, (position_t){0, 0});
-    ctx->visited[0][0] = 1;
+    ctx->enqueued[0][0] = 1;
 
     while (!is_empty(&q)) {
         position_t curr = de_queue(&q);
