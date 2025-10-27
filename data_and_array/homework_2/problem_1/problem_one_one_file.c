@@ -63,10 +63,6 @@ int print_help(int return_code)
     printf("  - Then print the coordinates of the path from entrance to exit, one per line\n");
     printf("  - If no path exists, print: Cannot reach the exit\n");
     printf("\n");
-    printf("Note:\n");
-    printf("  - Use BFS (Breadth-First Search) with direction priority: Up -> Down -> Left -> Right\n");
-    printf("  - Read maze input with: scanf(\"%%1d\", &maze[i][j])\n");
-    printf("  - Do NOT use scanf(\"%%d\", &maze[i][j]) for reading the maze\n");
     printf("  - Time limit: 1 second\n");
     return return_code;
 }
@@ -100,12 +96,14 @@ void bfs_explore_neighbors(bfs_context_t *ctx, queue_t *q, position_t curr, cons
         int nx = curr.x + dx[d];
         int ny = curr.y + dy[d];
         int valid = nx >= 0 && nx < ctx->rows && ny >= 0 && ny < ctx->cols;
-        int walkable = valid && ctx->maze[nx][ny] == 1 && !ctx->visited[nx][ny];
+        int walkable = valid && ctx->maze[nx][ny] == 1;
         if (!walkable)
             continue;
-        ctx->visited[nx][ny] = 1;
-        ctx->parent[nx][ny] = curr;
-        en_queue(q, (position_t){nx, ny});
+        if (!ctx->visited[nx][ny]) {
+            ctx->visited[nx][ny] = 1;
+            ctx->parent[nx][ny] = curr;
+            en_queue(q, (position_t){nx, ny});
+        }
     }
 }
 
