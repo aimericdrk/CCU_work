@@ -12,19 +12,23 @@
 
 // Position structure
 typedef struct position_s {
-    int x, y;
+    int x;
+    int y;
 } position_t;
 
 // Queue structure for BFS
 typedef struct queue_s{
     position_t data[MAX_SIZE * MAX_SIZE];
-    int front, rear;
+    int front;
+    int rear;
 } queue_t;
 
 typedef struct bfs_context_s {
-        int rows, cols;
+        int rows;
+        int cols;
         int (*maze)[MAX_SIZE];
         int visited[MAX_SIZE][MAX_SIZE];
+        int enqueued[MAX_SIZE][MAX_SIZE];
         position_t parent[MAX_SIZE][MAX_SIZE];
 } bfs_context_t;
 
@@ -96,10 +100,12 @@ void bfs_explore_neighbors(bfs_context_t *ctx, queue_t *q, position_t curr, cons
         int nx = curr.x + dx[d];
         int ny = curr.y + dy[d];
         if (nx >= 0 && nx < ctx->rows && ny >= 0 && ny < ctx->cols && ctx->maze[nx][ny] == 1) {
-            if (!ctx->visited[nx][ny]) {
+            if (!ctx->visited[nx][ny] && !ctx->enqueued[nx][ny]) {
                 ctx->parent[nx][ny] = curr;
-                ctx->visited[nx][ny] = 1;
                 en_queue(q, (position_t){nx, ny});
+                ctx->enqueued[nx][ny] = 1;
+            } else if (!ctx->visited[nx][ny] && ctx->enqueued[nx][ny]) {
+                ctx->parent[nx][ny] = curr;
             }
         }
     }
@@ -112,9 +118,10 @@ int bfs_shortest_path(bfs_context_t *ctx)
     queue_t q;
     init_queue(&q);
 
-    for (int i = 0; i < ctx->rows; i++)
+     for (int i = 0; i < ctx->rows; i++)
         for (int j = 0; j < ctx->cols; j++) {
             ctx->visited[i][j] = 0;
+            ctx->enqueued[i][j] = 0;
             ctx->parent[i][j] = (position_t){-1, -1};
         }
 
@@ -126,6 +133,7 @@ int bfs_shortest_path(bfs_context_t *ctx)
 
     while (!is_empty(&q)) {
         position_t curr = de_queue(&q);
+        ctx->visited[curr.x][curr.y] = 1;
         if (curr.x == ctx->rows - 1 && curr.y == ctx->cols - 1)
             return 1;
         bfs_explore_neighbors(ctx, &q, curr, dx, dy);
@@ -139,7 +147,8 @@ int bfs_shortest_path(bfs_context_t *ctx)
 int main(int argc, char **argv)
 {
     bfs_context_t ctx;
-    int maze[MAX_SIZE][MAX_SIZE] = {0};
+        int maze[MAX_SIZE][MAX_SIZE] = {0};
+
     int found;
 
     (void)argv; // Unused parameter
