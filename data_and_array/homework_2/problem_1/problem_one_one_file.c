@@ -95,14 +95,12 @@ void bfs_explore_neighbors(bfs_context_t *ctx, queue_t *q, position_t curr, cons
     for (int d = 0; d < 4; d++) {
         int nx = curr.x + dx[d];
         int ny = curr.y + dy[d];
-        int valid = nx >= 0 && nx < ctx->rows && ny >= 0 && ny < ctx->cols;
-        int walkable = valid && ctx->maze[nx][ny] == 1;
-        if (!walkable)
-            continue;
-        if (!ctx->visited[nx][ny]) {
-            ctx->visited[nx][ny] = 1;
-            ctx->parent[nx][ny] = curr;
-            en_queue(q, (position_t){nx, ny});
+        if (nx >= 0 && nx < ctx->rows && ny >= 0 && ny < ctx->cols && ctx->maze[nx][ny] == 1) {
+            if (!ctx->visited[nx][ny]) {
+                ctx->parent[nx][ny] = curr;
+                ctx->visited[nx][ny] = 1;
+                en_queue(q, (position_t){nx, ny});
+            }
         }
     }
 }
@@ -113,9 +111,19 @@ int bfs_shortest_path(bfs_context_t *ctx)
     int dy[4] = {0, 0, -1, 1};
     queue_t q;
     init_queue(&q);
+
+    for (int i = 0; i < ctx->rows; i++)
+        for (int j = 0; j < ctx->cols; j++) {
+            ctx->visited[i][j] = 0;
+            ctx->parent[i][j] = (position_t){-1, -1};
+        }
+
+    if (ctx->maze[0][0] == 0 || ctx->maze[ctx->rows-1][ctx->cols-1] == 0)
+        return 0;
+
     en_queue(&q, (position_t){0, 0});
     ctx->visited[0][0] = 1;
-    ctx->parent[0][0] = (position_t){-1, -1};
+
     while (!is_empty(&q)) {
         position_t curr = de_queue(&q);
         if (curr.x == ctx->rows - 1 && curr.y == ctx->cols - 1)
@@ -131,8 +139,7 @@ int bfs_shortest_path(bfs_context_t *ctx)
 int main(int argc, char **argv)
 {
     bfs_context_t ctx;
-        int maze[MAX_SIZE][MAX_SIZE] = {0};
-
+    int maze[MAX_SIZE][MAX_SIZE] = {0};
     int found;
 
     (void)argv; // Unused parameter
