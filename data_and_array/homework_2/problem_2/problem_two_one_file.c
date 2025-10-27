@@ -15,7 +15,7 @@
 typedef struct stack_s{
     int data[MAX_DISK];
     int top;
-} stack_t;
+} stack_rod_t;
 
 typedef struct move_s {
     int disk;
@@ -26,26 +26,26 @@ typedef struct move_s {
 typedef struct hanoi_context_s {
     int k, d;
     int move_count;
-    stack_t rods[3];
+    stack_rod_t rods[3];
     move_t moves[131072];
 } hanoi_context_t;
 
-void init_stack(stack_t *s)
+void init_stack(stack_rod_t *s)
 {
     s->top = -1;
 }
 
-int is_empty(stack_t *s)
+int is_empty(stack_rod_t *s)
 {
     return s->top == -1;
 }
 
-void push_stack(stack_t *s, int val)
+void push_stack(stack_rod_t *s, int val)
 {
     s->data[++(s->top)] = val;
 }
 
-int pop_stack(stack_t *s) {
+int pop_stack(stack_rod_t *s) {
     if (is_empty(s)) return -1;
     return s->data[(s->top)--];
 }
@@ -56,7 +56,7 @@ char rod_name(int idx)
     return "ABC"[idx];
 }
 
-void print_rods(stack_t rods[3])
+void print_rods(stack_rod_t rods[3])
 {
     for (int r = 0; r < 3; r++) {
         printf("rod %c :", rod_name(r));

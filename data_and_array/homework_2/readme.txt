@@ -237,7 +237,7 @@ Data Structures
 typedef struct stack_s{
     int data[MAX_DISK];
     int top;
-} stack_t;
+} stack_rod_t;
 -> Represents a stack (rod) holding disks for the Tower of Hanoi.
 
 typedef struct move_s {
@@ -250,7 +250,7 @@ typedef struct move_s {
 typedef struct hanoi_context_s {
     int k, d;
     int move_count;
-    stack_t rods[3];
+    stack_rod_t rods[3];
     move_t moves[131072];
 } hanoi_context_t;
 -> Stores the entire state for a Tower of Hanoi run. ( used to reduce the numbers of args of a functions )
@@ -259,16 +259,16 @@ Functions
 
 stack_operations.c
 
-void init_stack(stack_t s);
+void init_stack(stack_rod_t s);
  -> Initializes a stack by setting its top index to -1 (empty).
 
-int is_empty(stack_t s);
+int is_empty(stack_rod_t s);
  -> Returns 1 if the stack is empty, 0 otherwise.
 
-void push_stack(stack_t s, int val);
+void push_stack(stack_rod_t s, int val);
  -> Pushes a disk (value) onto the stack.
 
-int pop_stack(stack_t s);
+int pop_stack(stack_rod_t s);
  -> Pops and returns the top disk from the stack, or -1 if the stack is empty.
 
 
@@ -280,7 +280,7 @@ char rod_name(int idx);
 
 print_infos.c
 
-void print_rods(stack_t rods[3]);
+void print_rods(stack_rod_t rods[3]);
  -> Prints the contents of all three rods, showing the disks on each rod in order.
 
 void print_moves(move_t moves, int k);

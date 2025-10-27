@@ -7,7 +7,7 @@
 
 #include "problem_two.h"
 
-void print_rods(stack_t rods[3])
+void print_rods(stack_rod_t rods[3])
 {
     for (int r = 0; r < 3; r++) {
         printf("rod %c :", rod_name(r));
