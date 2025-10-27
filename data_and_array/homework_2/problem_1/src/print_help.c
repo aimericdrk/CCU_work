@@ -22,10 +22,6 @@ int print_help(int return_code)
     printf("  - Then print the coordinates of the path from entrance to exit, one per line\n");
     printf("  - If no path exists, print: Cannot reach the exit\n");
     printf("\n");
-    printf("Note:\n");
-    printf("  - Use BFS (Breadth-First Search) with direction priority: Up -> Down -> Left -> Right\n");
-    printf("  - Read maze input with: scanf(\"%%1d\", &maze[i][j])\n");
-    printf("  - Do NOT use scanf(\"%%d\", &maze[i][j]) for reading the maze\n");
     printf("  - Time limit: 1 second\n");
     return return_code;
 }

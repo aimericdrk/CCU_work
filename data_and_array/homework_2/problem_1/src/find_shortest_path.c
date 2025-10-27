@@ -31,11 +31,13 @@ void bfs_explore_neighbors(bfs_context_t *ctx, queue_t *q, position_t curr, cons
         int nx = curr.x + dx[d];
         int ny = curr.y + dy[d];
         int valid = nx >= 0 && nx < ctx->rows && ny >= 0 && ny < ctx->cols;
-        int walkable = valid && ctx->maze[nx][ny] == 1 && !ctx->visited[nx][ny];
+        int walkable = valid && ctx->maze[nx][ny] == 1;
         if (!walkable)
             continue;
-        ctx->visited[nx][ny] = 1;
-        ctx->parent[nx][ny] = curr;
-        en_queue(q, (position_t){nx, ny});
+        if (!ctx->visited[nx][ny]) {
+            ctx->visited[nx][ny] = 1;
+            ctx->parent[nx][ny] = curr;
+            en_queue(q, (position_t){nx, ny});
+        }
     }
 }
