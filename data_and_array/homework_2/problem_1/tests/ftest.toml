@@ -5,3 +5,11 @@ expected.stdout = '14\n(0,0)\n(1,0)\n(2,0)\n(2,1)\n(2,2)\n(1,2)\n(0,2)\n(0,3)\n(
 expected.stderr = ""
 expected.exit_code = 0
 [[test]]
+
+[[test]]
+name = "test n°2 multiple solutions"
+command = "./problem_one < problem_1/tests/test_sample_two.txt"
+expected.stdout = '5\n(0,0)\n(0,1)\n(0,2)\n(1,2)\n(2,2)' 
+expected.stderr = ""
+expected.exit_code = 0
+[[test]]
